@@ -24,7 +24,7 @@
     <engines>
         <engine name="cordova" version=">=3.0.0" />
         <engine name="android-sdk" version=">=16" />
-        <engine name="windows-sdk" version=">=10.0.14393.0" />
+        <!-- <engine name="windows-sdk" version=">=10.0.14393.0" /> -->
     </engines>
 
     <!-- js -->
@@ -42,6 +42,7 @@
             </feature>
         </config-file>
 
+
         <resource-file src="appbeep.wav" />
 
         <header-file src="src/ios/APPBackgroundMode.h" />
@@ -53,9 +54,11 @@
     <!-- android -->
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="BackgroundMode" >
-                <param name="android-package"
-                      value="de.appplant.cordova.plugin.background.BackgroundMode"/>
+            <feature name="BackgroundMode">
+                <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundMode"/>
+            </feature>
+            <feature name="BackgroundModeExt">
+                <param name="android-package" value="de.appplant.cordova.plugin.background.BackgroundModeExt"/>
             </feature>
         </config-file>
 
@@ -69,7 +72,8 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.WAKE_LOCK" />
-            <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+            <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
         </config-file>
 
         <source-file
@@ -77,7 +81,7 @@
             target-dir="src/de/appplant/cordova/plugin/background" />
 
         <source-file
-            src="src/android/BackgroundExt.java"
+            src="src/android/BackgroundModeExt.java"
             target-dir="src/de/appplant/cordova/plugin/background" />
 
         <source-file
